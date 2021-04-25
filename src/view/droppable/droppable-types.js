@@ -78,6 +78,8 @@ export type OwnProps = {|
   children: (Provided, StateSnapshot) => Node,
   droppableId: DroppableId,
   renderClone: ?DraggableChildrenFn,
+  //TODO any type
+  dndContext: any,
 |};
 
 export type Props = {|

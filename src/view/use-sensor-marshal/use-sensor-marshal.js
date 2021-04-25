@@ -149,6 +149,8 @@ type TryStartArgs = {|
   draggableId: DraggableId,
   forceSensorStop: ?() => void,
   sourceEvent: ?Event,
+  //TODO any type
+  dndContext: any,
 |};
 
 function tryStart({
@@ -159,6 +161,7 @@ function tryStart({
   draggableId,
   forceSensorStop,
   sourceEvent,
+  dndContext
 }: TryStartArgs): ?PreDragActions {
   const shouldStart: boolean = canStart({
     lockAPI,
@@ -172,7 +175,7 @@ function tryStart({
   }
 
   const entry: DraggableEntry = registry.draggable.getById(draggableId);
-  const el: ?HTMLElement = findDraggable(contextId, entry.descriptor.id);
+  const el: ?HTMLElement = findDraggable(contextId, entry.descriptor.id, dndContext);
 
   if (!el) {
     warning(`Unable to find draggable element with id: ${draggableId}`);
@@ -239,7 +242,7 @@ function tryStart({
 
       // block next click if requested
       if (options.shouldBlockNextClick) {
-        const unbind = bindEvents(window, [
+        const unbind = bindEvents(dndContext || window, [
           {
             eventName: 'click',
             fn: preventDefault,
@@ -355,6 +358,8 @@ type SensorMarshalArgs = {|
   store: Store,
   customSensors: ?(Sensor[]),
   enableDefaultSensors: boolean,
+  //TODO any type
+  dndContext: any,
 |};
 
 // default sensors are now exported to library consumers
@@ -370,6 +375,7 @@ export default function useSensorMarshal({
   registry,
   customSensors,
   enableDefaultSensors,
+  dndContext
 }: SensorMarshalArgs) {
   const useSensors: Sensor[] = [
     ...(enableDefaultSensors ? defaultSensors : []),
@@ -434,6 +440,7 @@ export default function useSensorMarshal({
         forceSensorStop: forceStop,
         sourceEvent:
           options && options.sourceEvent ? options.sourceEvent : null,
+        dndContext: api.dndContext
       }),
     [contextId, lockAPI, registry, store],
   );
@@ -476,6 +483,7 @@ export default function useSensorMarshal({
       findOptionsForDraggable,
       tryReleaseLock,
       isLockClaimed,
+      dndContext,
     }),
     [
       canGetLock,

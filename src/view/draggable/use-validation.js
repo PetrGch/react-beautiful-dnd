@@ -13,6 +13,8 @@ export function useValidation(
   props: Props,
   contextId: ContextId,
   getRef: () => ?HTMLElement,
+  //TODO any type
+  dndContext?: any,
 ) {
   // running after every update in development
   useDevSetupWarning(() => {
@@ -46,7 +48,7 @@ export function useValidation(
     // When not enabled there is no drag handle props
     if (props.isEnabled) {
       invariant(
-        findDragHandle(contextId, id),
+        findDragHandle(contextId, id, dndContext),
         `${prefix(id)} Unable to find drag handle`,
       );
     }

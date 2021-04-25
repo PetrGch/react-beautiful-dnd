@@ -21,6 +21,8 @@ type Props = {|
   // See our [sensor api](/docs/sensors/sensor-api.md)
   sensors?: Sensor[],
   enableDefaultSensors?: ?boolean,
+  //TODO any type
+  dndContext?: any,
 |};
 
 // Reset any context that gets persisted across server side renders
@@ -51,6 +53,7 @@ export default function DragDropContext(props: Props) {
           onDragStart={props.onDragStart}
           onDragUpdate={props.onDragUpdate}
           onDragEnd={props.onDragEnd}
+          dndContext={props.context}
         >
           {props.children}
         </App>

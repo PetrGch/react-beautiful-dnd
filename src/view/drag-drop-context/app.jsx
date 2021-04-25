@@ -63,6 +63,8 @@ export type Props = {|
 
   // screen reader
   dragHandleUsageInstructions: string,
+  //TODO any type
+  dndContext: any,
 |};
 
 const createResponders = (props: Props): Responders => ({
@@ -227,6 +229,7 @@ export default function App(props: Props) {
       isMovementAllowed: getIsMovementAllowed,
       dragHandleUsageInstructionsId,
       registry,
+      dndContext: props.dndContext,
     }),
     [
       contextId,
@@ -246,6 +249,7 @@ export default function App(props: Props) {
     customSensors: sensors,
     // default to 'true' unless 'false' is explicitly passed
     enableDefaultSensors: props.enableDefaultSensors !== false,
+    dndContext: props.dndContext
   });
 
   // Clean store when unmounting

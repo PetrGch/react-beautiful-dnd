@@ -308,7 +308,7 @@ export default function useMouseSensor(api: SensorAPI) {
       };
 
       unbindEventsRef.current = bindEvents(
-        window,
+        api.dndContext || window,
         [preventForcePressBinding, startCaptureBinding],
         options,
       );
@@ -351,7 +351,7 @@ export default function useMouseSensor(api: SensorAPI) {
         },
       });
 
-      unbindEventsRef.current = bindEvents(window, bindings, options);
+      unbindEventsRef.current = bindEvents(api.dndContext || window, bindings, options);
     },
     [cancel, stop],
   );

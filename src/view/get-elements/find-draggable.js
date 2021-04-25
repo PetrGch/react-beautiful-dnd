@@ -8,10 +8,12 @@ import isHtmlElement from '../is-type-of-element/is-html-element';
 export default function findDraggable(
   contextId: ContextId,
   draggableId: DraggableId,
+  //TODO any type
+  dndContext: any
 ): ?HTMLElement {
   // cannot create a selector with the draggable id as it might not be a valid attribute selector
   const selector: string = `[${attributes.draggable.contextId}="${contextId}"]`;
-  const possible: Element[] = toArray(document.querySelectorAll(selector));
+  const possible: Element[] = toArray((dndContext || document).querySelectorAll(selector));
 
   const draggable: ?Element = find(possible, (el: Element): boolean => {
     return el.getAttribute(attributes.draggable.id) === draggableId;
