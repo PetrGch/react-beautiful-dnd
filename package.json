@@ -10,8 +10,7 @@
     "type": "git",
     "url": "https://github.com/PetrGch/react-beautiful-dnd.git"
   },
-  "main": "dist/react-beautiful-dnd.cjs.js",
-  "module": "dist/react-beautiful-dnd.esm.js",
+  "main": "dist/react-pretty-dnd.cjs.js",
   "sideEffects": false,
   "files": [
     "/dist",
@@ -38,7 +37,7 @@
     "build": "yarn build:clean && yarn build:dist && yarn build:flow",
     "build:clean": "rimraf dist",
     "build:dist": "rollup -c",
-    "build:flow": "echo \"// @flow\n\nexport * from '../src';\" > dist/react-beautiful-dnd.cjs.js.flow",
+    "build:flow": "echo \"// @flow\n\nexport * from '../src';\" > dist/react-pretty-dnd.js.flow",
     "storybook": "start-storybook -p 9002",
     "build-storybook": "build-storybook -c .storybook -o site",
     "prepublishOnly": "yarn build"
@@ -136,7 +135,7 @@
     "react": "^16.8.5 || ^17.0.0",
     "react-dom": "^16.8.5 || ^17.0.0"
   },
-  "license": "Apache-2.0",
+  "license": "MIT",
   "jest-junit": {
     "output": "test-reports/junit/js-test-results.xml"
   }
