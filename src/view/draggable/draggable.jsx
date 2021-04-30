@@ -65,7 +65,7 @@ export default function Draggable(props: Props) {
   } = props;
 
   // Validating props and innerRef
-  useValidation(props, contextId, getRef);
+  useValidation(props, contextId, getRef, props.dndContext);
 
   // Clones do not speak to the dimension marshal
   // We are violating the rules of hooks here: conditional hooks.
