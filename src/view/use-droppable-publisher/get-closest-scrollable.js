@@ -83,6 +83,14 @@ const getClosestScrollable = (el: ?Element): ?Element => {
     return null;
   }
 
+  if (el.shadowRoot) {
+    const drawer = el.shadowRoot.querySelector(".drawer-body");
+
+    if (drawer) {
+      return drawer;
+    }
+  }
+
   if (!isElementScrollable(el)) {
     // keep recursing
     return getClosestScrollable(el.parentElement);

@@ -59,7 +59,8 @@ export default function getScrollListener({ onWindowScroll }: Args): Result {
 
   function start() {
     invariant(!isActive(), 'Cannot start scroll listener when already active');
-    unbind = bindEvents(window, [binding]);
+    // unbind = bindEvents(window, [binding]);
+    unbind = noop();
   }
   function stop() {
     invariant(isActive(), 'Cannot stop scroll listener when not active');
